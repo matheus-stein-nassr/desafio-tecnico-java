@@ -57,7 +57,6 @@ Arquivo: `src/test/resources/application-test.yml`
 No Windows PowerShell, na raiz do projeto:
 
 ```powershell
-cd "C:\Users\Matheus\Desktop\DESAFIO MIRANTE\event-management"
 .\mvnw clean package
 .\mvnw spring-boot:run
 ```
@@ -71,7 +70,6 @@ Documentação Swagger:
 ## Executar testes
 
 ```powershell
-cd "C:\Users\Matheus\Desktop\DESAFIO MIRANTE\event-management"
 .\mvnw clean test
 ```
 
