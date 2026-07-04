@@ -1,0 +1,24 @@
+<header class="app-header">
+  <div class="app-header__content">
+    <a class="brand" routerLink="/events" aria-label="Ir para a lista de eventos">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img">
+          <path d="M7 2v3M17 2v3M3.5 9h17M5.5 4h13a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
+          <path d="M8 13h3v3H8z" />
+        </svg>
+      </span>
+      <span>Gestão de Eventos</span>
+    </a>
+
+    <a mat-raised-button color="primary" class="new-event-button" routerLink="/events/new">
+      <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+      <span class="button-label">Novo evento</span>
+    </a>
+  </div>
+</header>
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,100 @@
+<section class="event-form-page page-container">
+  <a class="eyebrow-link" routerLink="/events">
+    <span aria-hidden="true">←</span>
+    Voltar para eventos
+  </a>
+
+  <div class="form-heading">
+    <h1 class="page-title">{{ isEditMode ? 'Editar evento' : 'Novo evento' }}</h1>
+    <p class="page-subtitle">
+      {{ isEditMode ? 'Atualize as informações do evento.' : 'Preencha os dados do evento abaixo.' }}
+    </p>
+  </div>
+
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="48"></mat-spinner>
+    <span>Carregando evento...</span>
+  </div>
+
+  <form *ngIf="!isLoading" [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
+    <div class="form-fields">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="title" />
+          <mat-hint align="end">{{ eventForm.controls.title.value.length }} / 100</mat-hint>
+
+          <mat-error *ngIf="eventForm.controls.title.touched && eventForm.controls.title.invalid">
+            Informe um título válido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição</mat-label>
+
+          <textarea matInput rows="4" formControlName="description">
+          </textarea>
+          <mat-hint align="end">{{ eventForm.controls.description.value.length }} / 1000</mat-hint>
+
+          <mat-error *ngIf="eventForm.controls.description.touched && eventForm.controls.description.invalid">
+            Informe uma descrição válida.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="date-time-row">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data</mat-label>
+
+            <input matInput [matDatepicker]="picker" formControlName="eventDate">
+
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+
+            <mat-datepicker #picker></mat-datepicker>
+
+            <mat-error *ngIf="eventForm.controls.eventDate.touched && eventForm.controls.eventDate.invalid">
+              Informe uma data válida.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Horário</mat-label>
+
+            <input matInput type="time" formControlName="eventTime">
+
+            <mat-error *ngIf="eventForm.controls.eventTime.touched && eventForm.controls.eventTime.invalid">
+              Informe um horário válido.
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Local</mat-label>
+
+          <input matInput formControlName="location" />
+          <mat-hint align="end">{{ eventForm.controls.location.value.length }} / 200</mat-hint>
+
+          <mat-error *ngIf="eventForm.controls.location.touched && eventForm.controls.location.invalid">
+            Informe um local válido.
+          </mat-error>
+        </mat-form-field>
+
+        <p class="error-banner" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </p>
+    </div>
+
+    <div class="actions">
+          <button mat-stroked-button type="button" routerLink="/events">
+            Cancelar
+          </button>
+
+          <button mat-raised-button color="primary" class="save-button" type="submit" [disabled]="isSubmitting">
+            <mat-spinner *ngIf="isSubmitting" diameter="18"></mat-spinner>
+            <span>{{ isSubmitting ? 'Salvando...' : 'Salvar evento' }}</span>
+          </button>
+    </div>
+  </form>
+</section>

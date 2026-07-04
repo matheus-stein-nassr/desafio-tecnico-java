@@ -1,0 +1,62 @@
+<section class="events-page page-container">
+  <div class="page-heading">
+    <div>
+      <h1 class="page-title">Próximos eventos</h1>
+      <p class="page-subtitle">
+        {{ total === 1 ? '1 evento cadastrado' : total + ' eventos cadastrados' }}
+      </p>
+    </div>
+  </div>
+
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="48"></mat-spinner>
+    <span>Carregando eventos...</span>
+  </div>
+  <p class="error-banner" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <ng-container *ngIf="!isLoading && !errorMessage">
+    <app-empty-state *ngIf="events.length === 0" title="Nenhum evento cadastrado"
+      message="Crie seu primeiro evento para começar."></app-empty-state>
+
+    <div class="event-list" *ngIf="events.length > 0">
+      <a class="event-row" *ngFor="let event of events" [routerLink]="['/events', event.id]">
+        <div class="date-tile" aria-hidden="true">
+          <strong>{{ event.eventDateTime | date: 'dd' }}</strong>
+          <span>{{ event.eventDateTime | date: 'MMM' }}</span>
+          <small>{{ event.eventDateTime | date: 'yyyy' }}</small>
+        </div>
+
+        <div class="event-row__content">
+          <h2>{{ event.title }}</h2>
+          <div class="event-meta">
+            <span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l3 2"/>
+              </svg>
+              {{ event.eventDateTime | date: 'HH:mm' }}
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                <circle cx="12" cy="10" r="2.5"/>
+              </svg>
+              {{ event.location }}
+            </span>
+          </div>
+          <p>{{ (event.description || 'Sem descrição.') | truncate: 150 }}</p>
+        </div>
+
+        <svg class="event-row__arrow" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m9 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="paginator-shell" *ngIf="events.length > 0">
+      <mat-paginator [length]="total" [pageSize]="pageSize" [pageIndex]="pageIndex"
+        [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </ng-container>
+</section>

@@ -1,0 +1,152 @@
+.events-page {
+  display: grid;
+  gap: 28px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.event-list {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  background: var(--app-surface);
+  box-shadow: var(--app-shadow);
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) 24px;
+  gap: 24px;
+  min-height: 148px;
+  padding: 24px;
+  align-items: center;
+  color: inherit;
+  border-bottom: 1px solid var(--app-border);
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+
+.event-row:hover {
+  background: #faf9ff;
+}
+
+.event-row:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 3px solid rgba(91, 63, 209, 0.25);
+}
+
+.date-tile {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-primary);
+  border-radius: 10px;
+  background: #f1efff;
+  text-align: center;
+}
+
+.date-tile strong {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.date-tile span {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.date-tile small {
+  margin-top: 3px;
+  color: var(--app-muted);
+  font-size: 0.72rem;
+}
+
+.event-row__content {
+  min-width: 0;
+}
+
+.event-row__content h2 {
+  margin: 0 0 9px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.event-row__content p {
+  margin: 12px 0 0;
+  overflow: hidden;
+  color: var(--app-muted);
+  line-height: 1.55;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--app-muted);
+  font-size: 0.9rem;
+}
+
+.event-meta span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.event-meta svg,
+.event-row__arrow {
+  width: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.event-row__arrow {
+  color: #94a3b8;
+}
+
+.paginator-shell {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  background: var(--app-surface);
+}
+
+@media (max-width: 640px) {
+  .event-row {
+    grid-template-columns: 58px minmax(0, 1fr) 18px;
+    gap: 14px;
+    min-height: 124px;
+    padding: 18px 14px;
+  }
+
+  .date-tile {
+    min-height: 76px;
+  }
+
+  .date-tile strong {
+    font-size: 1.4rem;
+  }
+
+  .event-row__content p {
+    white-space: normal;
+  }
+
+  .event-meta {
+    gap: 8px 14px;
+  }
+}

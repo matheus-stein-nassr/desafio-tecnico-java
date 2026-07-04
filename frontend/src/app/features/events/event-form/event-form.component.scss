@@ -1,0 +1,71 @@
+.event-form-page {
+  max-width: 780px;
+}
+
+.form-heading {
+  margin-bottom: 30px;
+}
+
+.event-form {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  background: var(--app-surface);
+  box-shadow: var(--app-shadow);
+}
+
+.form-fields {
+  display: grid;
+  gap: 18px;
+  padding: 32px;
+}
+
+.date-time-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 32px;
+  border-top: 1px solid var(--app-border);
+  background: #fbfcfe;
+}
+
+.actions button {
+  min-height: 44px;
+  padding-inline: 22px;
+}
+
+.save-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.save-button mat-spinner {
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .form-fields {
+    padding: 22px 18px;
+  }
+
+  .date-time-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .actions {
+    padding: 18px;
+  }
+
+  .actions button {
+    flex: 1;
+    padding-inline: 12px;
+  }
+}
